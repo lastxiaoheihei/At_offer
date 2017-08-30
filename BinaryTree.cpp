@@ -50,3 +50,28 @@ void DisplayBinaryTree(BinaryTreeNode *head)
 		}
 	}
 }
+
+BinaryTreeNode* CreateBST(vector<int> nodesValue)
+{
+	int length = nodesValue.size();
+	BinaryTreeNode *bst = NULL;
+	for (int i = 0; i < length; i++)
+		InsertBST(bst, nodesValue[i]);
+	return bst;
+}
+
+void InsertBST(BinaryTreeNode *&bst, int value)
+{
+	if (bst == NULL)
+	{
+		bst = new BinaryTreeNode();
+		bst->data = value;
+		bst->left = bst->right = NULL;
+	}
+	else if (value == bst->data)
+		return;
+	else if (value < bst->data)
+		InsertBST(bst->left, value);
+	else
+		InsertBST(bst->right, value);
+}
